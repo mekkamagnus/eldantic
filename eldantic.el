@@ -30,8 +30,8 @@
        (let ((errors '()))
          ,@(mapcar (lambda (field-def)
                      (let* ((field (car field-def))
-                       (list 'let (list (list 'key (intern (concat ":" (symbol-name field))))
-                             `(progn
+                       `(let ((key ,(intern (concat ":" (symbol-name field))))
+                         (progn
                                 (unless (plist-member data key)
                                   (push ,(format "Missing required key: :%s" field) errors))
                                 (when (plist-member data key)
