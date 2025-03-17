@@ -47,7 +47,7 @@
      (defun ,constructor-name (data)
        ,(format "Create a new %s instance from DATA after validation." (symbol-name name))
        (,validator-name data)
-       data)))
+       data))))
 
 (provide 'eldantic)
 ;;; eldantic.el ends here
