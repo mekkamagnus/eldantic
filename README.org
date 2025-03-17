@@ -8,7 +8,9 @@ Eldantic is a lightweight, native Emacs Lisp library that brings pydantic-inspir
 - Built-In Type Checkers: Validate common data types (strings, integers, booleans, lists).
 - Data Validation: Automatically verify data against defined schemas.
 - Error Aggregation: Collect and report multiple validation errors.
-- Lightweight & Extensible: Minimal MVP design with room for future enhancements.
+- Lightweight & Extensible: Minimal MVP design with room for future enhancements
+- Comprehensive Test Suite: Full test coverage for all validation scenarios
+- Flexible Validation: Allows extra fields while enforcing required ones
 
 ** Installation
 1. Place the `eldantic.el` file in your Emacs load path.
@@ -52,7 +54,9 @@ To validate data, simply call the constructor function:
   - `defschema`: Define a schema and auto-generate validation and constructor functions.
 
 ** Roadmap
-- **Enhanced Type Conversions:** Support for automatic type conversion (e.g., string-to-integer).
+- **Enhanced Type Conversions:** Support for automatic type conversion (e.g., string-to-integer)
+- **Strict Mode:** Option to reject unexpected fields
+- **Nested Schemas:** Support for validating complex nested data structures
 - **Custom Validators:** Allow definition of custom type-checking functions.
 - **Extended Data Formats:** Add support for validating JSON or other external formats.
 - **Improved Error Reporting:** Provide more granular error details and suggestions.

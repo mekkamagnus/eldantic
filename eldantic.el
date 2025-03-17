@@ -37,10 +37,11 @@
                                 (when (plist-member data key)
                                   (let ((value (plist-get data key)))
                                     (unless (,(intern (concat "check-" (symbol-name (cadr field-def)))) value)
-                                      (push (format ,(concat "Invalid type for :%s: expected %s, got %%s" 
-                                                           (symbol-name field) (symbol-name (cadr field-def)))
-                                            (type-of value))
-                                      errors)))))))
+                                      (push (format ,(concat "Invalid type for :%s: expected %s, got %%s"
+                                                             (symbol-name field)
+                                                             (symbol-name (cadr field-def)))
+                                                  (type-of value))
+                                            errors))))))))
                    fields)
          (when errors
            (error (mapconcat 'identity (reverse errors) "\n")))))
