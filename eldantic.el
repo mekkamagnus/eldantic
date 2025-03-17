@@ -29,8 +29,8 @@
        ,(format "Validate DATA against the %s schema." (symbol-name name))
        (let ((errors '()))
          ,@(mapcar (lambda (field-def)
-                     (let* ((field (car field-def))
-                       `(let ((key ,(intern (concat ":" (symbol-name field))))
+                     (let* ((field (car field-def)))
+                       `(let ((key ,(intern (concat ":" (symbol-name field)))))
                          (progn
                                 (unless (plist-member data key)
                                   (push ,(format "Missing required key: :%s" field) errors))
