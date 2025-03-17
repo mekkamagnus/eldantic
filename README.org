@@ -1,0 +1,64 @@
+#+TITLE: Eldantic - A pydantic-inspired Schema Validation Library for Emacs Lisp
+
+* Eldantic
+Eldantic is a lightweight, native Emacs Lisp library that brings pydantic-inspired schema validation to your Emacs environment. It enables you to define data schemas with type constraints, automatically validate data (such as AI agent responses), and aggregate errors in a unified, user-friendly interface.
+
+** Features
+- Schema Definition Macros: Easily declare schemas with expected keys and types.
+- Built-In Type Checkers: Validate common data types (strings, integers, booleans, lists).
+- Data Validation: Automatically verify data against defined schemas.
+- Error Aggregation: Collect and report multiple validation errors.
+- Lightweight & Extensible: Minimal MVP design with room for future enhancements.
+
+** Installation
+1. Place the `eldantic.el` file in your Emacs load path.
+2. Add the following to your Emacs configuration:
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'load-path "/path/to/eldantic")
+   (require 'eldantic)
+   #+END_SRC
+
+** Usage
+*** Defining a Schema
+Define a schema using the `defschema` macro. For example, to validate an AI agent's output:
+
+#+BEGIN_SRC emacs-lisp
+(defschema ai-agent-output
+  ((title string)
+   (confidence integer)
+   (summary string)))
+#+END_SRC
+
+This macro generates two functions:
+- `validate-ai-agent-output`: Validates a data plist against the schema.
+- `new-ai-agent-output`: Validates and returns the processed data.
+
+*** Validating Data
+To validate data, simply call the constructor function:
+
+#+BEGIN_SRC emacs-lisp
+(let ((sample-data '(:title "AI Result" :confidence 90 :summary "Agent output summary.")))
+  (condition-case err
+      (message "Validated Data: %S" (new-ai-agent-output sample-data))
+    (error (message "Validation Error: %s" err))))
+#+END_SRC
+
+** API Overview
+- *Type Checkers:*  
+  - `check-string`: Returns true if the value is a string.
+  - `check-integer`: Returns true if the value is an integer.
+  - Extend with additional checkers as needed.
+- *Schema Macros:*  
+  - `defschema`: Define a schema and auto-generate validation and constructor functions.
+
+** Roadmap
+- **Enhanced Type Conversions:** Support for automatic type conversion (e.g., string-to-integer).
+- **Custom Validators:** Allow definition of custom type-checking functions.
+- **Extended Data Formats:** Add support for validating JSON or other external formats.
+- **Improved Error Reporting:** Provide more granular error details and suggestions.
+
+** Contributing
+Contributions are welcome! Fork the repository and submit pull requests with enhancements or bug fixes. For major changes, please open an issue first to discuss your plans.
+
+** License
+Distributed under the MIT License. See the LICENSE file for more information.
